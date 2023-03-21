@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class JsonCleverTest {
     @Test
@@ -16,8 +17,8 @@ public class JsonCleverTest {
             Busya busya = myPet.fromJson(readerFile, Busya.class);
             Assertions.assertEquals("shpitz", busya.breed);
             Assertions.assertTrue(busya.isDog);
-            Assertions.assertArrayEquals(List<String>"red,black, white", busya.color); //сравнить ожидаемый массив с ключом "color" с фактическим в объекте busia
-
+            List<String> toCompare = List.of("red", "black", "white");
+            Assertions.assertEquals(toCompare, busya.color);
         }
 
     }
