@@ -1,0 +1,13 @@
+{
+  "name": "Busya",
+  "age": 9,
+  "breed": "shpitz",
+  "color": ["red", "black", "white"],
+  "isDog": true,
+  "habits": {
+    "atNight": "sleep",
+    "atDay": "play,",
+    "always": "to feast"
+  },
+  "temperament": "frisky"
+}
