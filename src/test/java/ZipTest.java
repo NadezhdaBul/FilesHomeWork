@@ -16,8 +16,10 @@ public class ZipTest {
     private ClassLoader cl = ZipTest.class.getClassLoader();
     @Test
     void  zipTest () throws Exception {
-        try (InputStream isf = cl.getClass().getResourceAsStream("zipArchive.zip")) {
-            try (ZipInputStream zipFile = new ZipInputStream(isf)) {
+        try (
+                InputStream isf = cl.getClass().getResourceAsStream("zipArchive.zip");
+                ZipInputStream zipFile = new ZipInputStream(isf)
+        ) {
 
                 ZipEntry entry;
 
@@ -41,7 +43,6 @@ public class ZipTest {
 
                 }
 
-            }
         }
 
     }
