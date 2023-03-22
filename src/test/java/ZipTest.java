@@ -16,9 +16,8 @@ public class ZipTest {
     private ClassLoader cl = ZipTest.class.getClassLoader();
     @Test
     void  zipTest () throws Exception {
-        try (
-                InputStream isf = cl.getClass().getResourceAsStream("zipArchive.zip");
-                ZipInputStream zipFile = new ZipInputStream(isf)
+        try (InputStream is = cl.getResourceAsStream("zipArch.zip");
+             ZipInputStream zipFile = new ZipInputStream(is)
         ) {
 
                 ZipEntry entry;
@@ -35,8 +34,7 @@ public class ZipTest {
                     } else if (entry.getName().contains("XlsDoc")) {
                         XLS xlsFile = new XLS(zipFile);
                         Assertions.assertTrue(
-                                xlsFile.excel.getSheetAt(0).getRow(5).getCell(1).
-                                        getStringCellValue().contains("March")
+                                xlsFile.excel.getSheetAt(0).getRow(4).getCell(1).getStringCellValue().startsWith("March")
                         );
 
                     }
