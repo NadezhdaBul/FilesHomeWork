@@ -1,4 +1,4 @@
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -7,14 +7,17 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class JsonCleverTest {
+
+    ClassLoader cl = JsonCleverTest.class.getClassLoader();
+
     @Test
     void jsonTest () throws Exception {
-        Gson myPet = new Gson();
+        ObjectMapper myPet = new ObjectMapper();
         try (
-                InputStream inputFile = getClass().getResourceAsStream("mypet.json");
+                InputStream inputFile = cl.getResourceAsStream("mypet.json");
                 InputStreamReader readerFile = new InputStreamReader(inputFile)
         ) {
-            Busya busya = myPet.fromJson(readerFile, Busya.class);
+            Busya busya = myPet.readValue(readerFile, Busya.class);
             Assertions.assertEquals("shpitz", busya.breed);
             Assertions.assertTrue(busya.isDog);
             List<String> toCompare = List.of("red", "black", "white");
